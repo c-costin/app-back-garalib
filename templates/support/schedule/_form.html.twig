@@ -1,0 +1,27 @@
+<div class="col-md-6">
+    <div class="mt-5">
+        <h5 class="title"><c>Informations de l'horaire n°{{ schedule.id }}</c></h5>
+        <form method="POST">
+            <input type="hidden" name="id" value="{{ schedule.id }}">
+            <div class="row mb-3">
+                <div class="mb-3">
+                    <label for="day" class="form-label">Jour</label>
+                    <input type="text" class="searchbar-input" name="day" placeholder="jour" aria-label="day" value="{{ schedule is defined ? schedule.day : '' }}">
+                </div>
+                <div class="mb-3">
+                    <label for="startTime" class="form-label">Horaire d'ouverture</label>
+                    <input type="time" class="searchbar-input" name="startTime" min="06:00" max="20:00" placeholder="horaire d'ouverture" aria-label="startTime" value="{{ schedule is defined ? schedule.startTime : '' }}">
+                </div>
+                <div class="mb-3">
+                    <label for="endTime" class="form-label">Horaire de fermeture</label>
+                    <input type="time" class="searchbar-input" name="endTime" min="06:00" max="20:00" placeholder="horaire de fermeture" aria-label="endTime" value="{{ schedule is defined ? schedule.endTime : '' }}">
+                </div>
+            </div>
+            <div class="col-12">
+				<button type="submit" class="btn btn-link align-self-end py-2 px-3">Sauvegarder</button>
+				<a class="btn btn-link align-self-end py-2 px-3" href="{{ path("app_support_garage_browse") }}">Annuler</a>
+			</div>
+            <hr style="color: #E9946B">
+        </form>
+    </div>
+</div>

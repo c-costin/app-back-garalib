@@ -1,0 +1,27 @@
+<div class="col-md-6">
+<div class="card mt-5">
+    <h5 class="title"><c>Informations de la prestation n°{{ type.id }}</c></h5>
+        <form method="POST">
+            <input type="hidden" name="id" value="{{ type.id }}">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="name" class="form-label">Nom</label>
+                    <input type="text" class="searchbar-input" name="name" placeholder="titre" aria-label="title" value="{{ type is defined ? type.name : '' }}">
+                </div>
+                <div class="my-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="searchbar-input" name="description"  rows="3" placeholder="Description"></textarea>
+                </div>
+                <div class="col-md-4">
+                    <label for="duration" class="form-label">Durée (en minutes)</label>
+                    <input type="integer" class="searchbar-input" name="duration" placeholder="Durée" aria-label="duration" value="{{ type is defined ? type.duration : '' }}">
+                </div>
+            </div>
+            <div class="col-12">
+				<button type="submit" class="btn btn-link align-self-end py-2 px-3">Sauvegarder</button>
+				<a class="btn btn-link align-self-end py-2 px-3" href="{{ path("app_support_garage_browse") }}">Annuler</a>
+			</div>
+            <hr style="color: #E9946B">
+        </form>
+    </div>
+</div>

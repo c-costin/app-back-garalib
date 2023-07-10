@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ path("app_support_dashboard_default") }}">
+      <span class="header-logo" href="/">Gara<b>Lib</b></span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link {{ currentPage is defined and currentPage == "home" ? "active" : "" }}" aria-current="page" href="{{ path("app_support_dashboard_default") }}">Accueil</a>
+        <a class="nav-link {{ currentPage is defined and currentPage == "user" ? "active" : ""}}" href="{{ path("app_support_user_browse") }}">Utilisateurs</a>
+        <a class="nav-link {{ currentPage is defined and currentPage == "garage" ? "active" : ""}}" href="{{ path("app_support_garage_browse") }}">Garages</a>
+      </div>
+    </div>
+    <div class="d-flex gap-5">
+	    <form class="d-flex" role="search" action="{{ path('app_support_dashboard_search') }}" method="GET">
+        <input class="searchbar-input form-control align-self-end py-2 px-3" type="search" placeholder="Utilisateur ou garage" aria-label="Search" name="search">
+        <button class="btn btn-link align-self-end py-2 px-3" type="submit">Recherche</button>
+      </form>
+      <div class="btn-group">
+        <button type="button" class="btn-link dropdown-toggle align-self-end py-2 px-3" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ app.user.firstname|capitalize ~ " " ~ app.user.lastname|capitalize }}
+        </button>
+       <ul class="dropdown-menu btn-link-stable">
+          <li>
+            <a class="dropdown-item btn-link" href="{{ path("app_support_user_read", {"id": app.user.id}) }}">Profil</a>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <a class="dropdown-item btn-link" href="{{ path('app_logout') }}">Déconnexion</a>
+          </li>
+       </ul>
+      </div>
+    </div>
+  </div>
+</nav>

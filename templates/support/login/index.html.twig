@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <p class="header-logo text-center">Gara<b>Lib</b>-Support<p>
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <form class="" action="{{ path('app_support_login') }}" method="post">
+            <div class="mb-3 row">
+                <input class="searchbar-input" type="email" name="_username" placeholder="Adresse mail" value="{{ last_username }}" class="form-control" id="email" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3 row">
+                <input class="searchbar-input" type="password" name="_password" placeholder="Mot de passe" class="form-control" id="password">
+            </div>
+            <div class="mb-3 row">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <button type="submit" class="btn btn-link">Connexion</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

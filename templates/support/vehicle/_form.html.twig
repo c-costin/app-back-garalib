@@ -1,0 +1,51 @@
+<div class="col-md-6">
+	<div class="mt-5">
+        <h5 class="title"><c>Informations du véhicule n°{{ vehicle.id }}</c></h5>
+		<form method="POST" class="mt-5">
+			<div class="row mb-3">
+				<div class="col">
+					<label for="type" class="form-label">Type</label>
+					<select type="text" class="searchbar-input" name="type" placeholder="type" aria-label="Type">
+						<option value="citadine-polyvalente" {{ vehicle.type == "citadine-polyvalente" ? "selected" : "" }}>Citadine-Polyvalente</option>
+						<option value="compacte" {{ vehicle.type == "compacte" ? "selected" : "" }}>Compacte</option>
+						<option value="berline" {{ vehicle.type == "berline" ? "selected" : "" }}>Berline</option>
+						<option value="monospace" {{ vehicle.type == "monospace" ? "selected" : "" }}>Monospace</option>
+						<option value="suv-4x4-pickup" {{ vehicle.type == "citadine-polyvalente" ? "selected" : "" }}>Suv-4x4-Pickup</option>
+						<option value="coupe" {{ vehicle.type == "coupe" ? "selected" : "" }}>Coupé</option>
+						<option value="utilitaire" {{ vehicle.type == "utilitaire" ? "selected" : "" }}>Utilitaire</option>
+						<option value="moto-quad-scooter" {{ vehicle.type == "moto-quad-scooter" ? "selected" : "" }}>Moto-Quad-Scooter</option>
+						<option value="break" {{ vehicle.type == "break" ? "selected" : "" }}>Break</option>
+						<option value="cabriolet" {{ vehicle.type == "cabriolet" ? "selected" : "" }}>Cabriolet</option>
+						<option value="collection-youngtimer" {{ vehicle.type == "collection-youngtimer" ? "selected" : "" }}>Collection-Youngtimer</option>
+						<option value="camping car" {{ vehicle.type == "camping car" ? "selected" : "" }}>Camping car</option>
+					</select>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="brand" class="form-label">Marque</label>
+				<input type="text" class="searchbar-input" name="brand" placeholder="marque" aria-label="brand" value="{{ vehicle is defined ? vehicle.brand|capitalize : "" }}">
+			</div>
+			<div class="mb-3">
+				<label for="model" class="form-label">Modèle</label>
+				<input type="text" class="searchbar-input" name="model" placeholder="modèle" aria-label="model" value="{{ vehicle is defined ? vehicle.model|capitalize : "" }}">
+			</div>
+			<div class="mb-3">
+				<label for="numberPlate" class="form-label">Numéro d'immatriculation</label>
+				<input type="text" class="searchbar-input" name="numberPlate" placeholder="numéro d'immatriculation" aria-label="numberPlate" value="{{ vehicle is defined ? vehicle.numberPlate|upper : "" }}">
+			</div>
+			<div class="mb-3">
+				<label for="releaseDate" class="form-label">Année de construction</label>
+				<input type="date" min="1900" max="2099" step="1" class="searchbar-input" name="releaseDate" placeholder="année de construction" aria-label="releaseDate" value="{{ vehicle is defined ? vehicle.releaseDate|date("Y-m-d") : "" }}">
+			</div>
+			<div class="mb-3">
+				<label for="mileage" class="form-label">Kilométrage</label>
+				<input type="number" class="searchbar-input" name="mileage" placeholder="kilométrage" aria-label="mileage" value="{{ vehicle is defined ? vehicle.mileage : "" }}">
+			</div>
+			<div class="col-12">
+			<button type="submit" class="btn btn-link align-self-end py-2 px-3">Sauvegarder</button>
+				<a class="btn btn-link align-self-end py-2 px-3" href="{{ path("app_support_user_browse") }}">Annuler</a>
+			</div>
+			<hr style="color: #E9946B">
+		</form>
+	</div>
+</div>

@@ -1,0 +1,28 @@
+<form method="POST" class="my-5">
+	<div class="row mb-3">
+		<div class="col">
+			<label for="garage_name" class="form-label">Nom</label>
+			<input type="text" class="searchbar-input" id="garage_name" name="garage_name" value="{{ garage is defined ? garage.name : "" }}" required>
+		</div>
+		<div class="col">
+			<label for="registerNumber" class="form-label">Siret</label>
+			<input type="text" class="searchbar-input" id="registerNumber" name="registerNumber" value="{{ garage is defined ? garage.registerNumber : "" }}" required>
+		</div>
+	</div>
+	<div class="mb-3">
+		<label for="phone" class="form-label">Téléphone</label>
+		<input type="tel" class="searchbar-input" id="phone" name="phone" value="{{ garage is defined ? garage.phone : "" }}" required>
+	</div>
+	<div class="mb-3">
+		<label for="email" class="form-label">Email</label>
+		<input type="email" class="searchbar-input" id="email" name="email" value="{{ garage is defined ? garage.email : "" }}" required>
+	</div>
+	<div class="mb-3">
+		<label for="address" class="form-label">Adresse</label>
+		{{ include('support/garage/_part_address_form.html.twig') }}
+	</div>
+	<div class="col-12">
+		<button type="submit" class="btn btn-link align-self-end py-2 px-3">Sauvegarder</button>
+		<a class="btn btn-link align-self-end py-2 px-3" href="{{ path("app_support_garage_browse") }}">Annuler</a>
+	</div>
+</form>

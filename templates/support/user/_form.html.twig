@@ -1,0 +1,50 @@
+<form method="POST" class="mt-5">
+	<div class="row mb-3">
+		<div class="col">
+			<label for="lastname" class="form-label">Nom</label>
+			<input type="text" class="searchbar-input" name="lastname" placeholder="nom" aria-label="Last  name" value="{{ user is defined ? user.lastname|capitalize : "" }}">
+		</div>
+		<div class="col">
+			<label for="firstname" class="form-label">Prénom</label>
+			<input type="text" class="searchbar-input" name="firstname" placeholder="prénom" aria-label="First name" value="{{ user is defined ? user.firstname|capitalize : "" }}">
+		</div>
+	</div>
+	<div class="mb-3">
+		<label for="email" class="form-label">Email</label>
+		<input type="email" class="searchbar-input" id="title" name="email" placeholder="exemple@mail.com" value="{{ user is defined ? user.email : "" }}">
+	</div>
+	<div class="mb-3">
+		<label for="phone" class="form-label">Téléphone</label>
+		<input type="phone" class="searchbar-input" id="title" name="phone" placeholder="0600000000" value="{{ user is defined ? user.phone : "" }}">
+	</div>
+	<div class="d-flex align-items-center gap-3 mb-3">
+		<label for="dateOfBirth">Date de  naissance : </label>
+		<div class="col-full">
+			<input id="dateOfBirth" class="searchbar-input" type="date" name="dateOfBirth" value="{{ user is defined ? user.dateOfBirth|date("Y-m-d") : "" }}"/>
+			<span id="dateOfBirth"></span>
+		</div>
+	</div>
+	<div class="d-flex align-items-center gap-3 mb-3">
+		<label for="roles" class="form-label fw-bolde">Rôle :</label>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" {{ user is defined and user.roles|join() == "ROLE_ADMIN" ? "checked" : "" }}>
+			<label class="form-check-label" for="inlineRadio1">Administrateur</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" {{ user is defined and user.roles|join() == "ROLE_MANAGER" ? "checked" : "" }}>
+			<label class="form-check-label" for="inlineRadio2">Manager</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" {{ user is defined and user.roles|join() == "ROLE_MEMBER" ? "checked" : "" }}>
+			<label class="form-check-label" for="inlineRadio3">Membre</label>
+		</div>
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4" {{ user is defined and user.roles|join() == "ROLE_USER" ? "checked" : "" }}>
+			<label class="form-check-label" for="inlineRadio4">Utilisateur</label>
+		</div>
+	</div>
+	<div class="col-12">
+		<button type="submit" class="btn btn-link align-self-end py-2 px-3">Sauvegarder</button>
+		<a class="btn btn-link align-self-end py-2 px-3" href="{{ path("app_support_user_browse") }}">Annuler</a>
+	</div>
+</form>

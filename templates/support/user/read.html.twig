@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur n°{{user.id}}{% endblock %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+		<ol class="breadcrumb my-5">
+			<li class="breadcrumb-item">
+				<a class="card-body" href="{{ path("app_support_dashboard_default") }}"><b>Bureau d'accueil</b></a>
+			</li>
+			<li class="breadcrumb-item">
+				<a class="card-body" href="{{ path("app_support_user_browse") }}"><b>Zone Utilisateurs</b></a>
+			</li>
+			<li class="breadcrumb-item card-body-active active" aria-current="page">{{ user.firstname|capitalize }} {{ user.lastname|upper }}</li>
+		</ol>
+	</nav>
+	
+	<h1 class="title"><b>{{ user.firstname|capitalize ~ " " ~ user.lastname|upper }}</b></h1>
+
+		<div class="col-5" style="margin: 3rem 1rem">
+			<div class="card-body">
+				<div style="display: flex; align-items: center; justify-content: space-between">
+					<h2 class="title"><c>Informations du profil n°{{ user.id }}</c></h2>
+					<div class="btn-group" style="display: flex">
+						<div class="btn px-1">
+    						<a class="btn btn-sm btn-action align-self-end py-2 px-3" href="{{ path('app_support_user_edit', {"id":user.id}) }}">
+      							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    						</a>
+  						</div>
+					</div>
+				</div>
+				<div class="row mt-2 card-text">
+					<div class="col-lg-3 col-md-4 label">Nom</div>
+					<div class="col-lg-9 col-md-8"><c>{{ user.lastname|capitalize }}</c></div>
+				</div>
+				<div class="row mt-2 card-text">
+					<div class="col-lg-3 col-md-4 label">Prénom</div>
+					<div class="col-lg-9 col-md-8"><c>{{ user.firstname|capitalize }}</c></div>
+				</div>
+				<div class="row mt-2 card-text">
+					<div class="col-lg-3 col-md-4 label">Rôle</div>
+					<div class="col-lg-9 col-md-8"><c>{{ user.roles|join() }}</c></div>
+				</div>
+				<div class="row mt-2 card-text">
+					<div class="col-lg-3 col-md-4 label">Email</div>
+					<div class="col-lg-9 col-md-8"><c>{{ user.email }}</c></div>
+				</div>
+				<div class="row mt-2 card-text">
+					<div class="col-lg-3 col-md-4 label">Téléphone</div>
+					<div class="col-lg-9 col-md-8"><c>{{ user.phone }}</c></div>
+				</div>
+				{% if user.address is not empty %}
+					<div class="row mt-2 card-text">
+						<div class="col-lg-3 col-md-4 label">Adresse</div>
+						<div class="col-lg-9 col-md-8"><c>{{user.address.number}} {{user.address.type}} {{user.address.name}}, {{user.address.postalCode}}, {{user.address.town}}</c></div>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+		<div class="col-5" style="margin: 3.5rem 1rem">
+			{% include "support/vehicle/_card.html.twig" %}
+		</div>
+		<div class="col-5" style="margin: 3.5rem 1rem">
+			{% include "support/appointment/_card.html.twig" %}
+		</div>
+		<div class="col-5" style="margin: 3.5rem 1rem">
+			{% include "support/review/_card.html.twig" %}
+		</div>
+		<img src="{{ asset('img/GarageCard.svg') }}" class="card-img-top" alt="Pro Image" style="width: 30%; height: auto; position: fixed; top: 50%; right: 10rem; transform: translateY(-50%);">
+
+{% endblock %}

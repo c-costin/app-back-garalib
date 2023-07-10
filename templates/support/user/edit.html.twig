@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un utilisateur{% endblock %}
+
+{% block body %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb my-5">
+			<li class="breadcrumb-item">
+				<a class="card-body" href="{{ path("app_support_dashboard_default") }}"><b>Bureau d'accueil</b></a>
+			</li>
+			<li class="breadcrumb-item">
+				<a class="card-body" href="{{ path("app_support_user_browse") }}"><b>Zone Utilisateurs</b></a>
+			</li>
+			<li class="breadcrumb-item">
+				<a class="card-body" href="{{ path(("app_support_user_read"), {"id":user.id}) }}"><b>{{ user.firstname|capitalize }} {{ user.lastname|upper }}</b></a>
+			</li>
+			<li class="breadcrumb-item card-body-active active" aria-current="page">Modifier un utilisateur</li>
+		</ol>
+	</nav>
+
+		<div style="display: flex; align-items: center; justify-content: space-between">
+		<h1 class="title"><b>Modifier les information de profil pour </b><c>{{ user.firstname|capitalize ~ " " ~ user.lastname|upper }}</c></h1>
+		<div class="text-end" style="display: flex">
+			<a role="button" class="btn btn-link align-self-end py-2 px-3" href="{{ path(("app_support_user_read"), {"id":user.id}) }}">Retour</a>
+		</div>
+	</div>
+
+    {% include "support/user/_form.html.twig" %}
+{% endblock %}

@@ -1,0 +1,44 @@
+			<div class="card-body">
+			<div style="display: flex; align-items: center; justify-content: space-between">
+  				<h2 class="title"><c>Véhicules</c></h2>
+				<div class="btn-group">
+  					<div class="btn px-1">
+    					<a class="btn btn-sm btn-action align-self-end py-2 px-3" href="{# {{ path('app_support_vehicle_add', {"id":user.id}) }}#}"> 
+      						<i class="fa fa-plus-square-o" aria-hidden="true"></i>
+    					</a>
+  					</div>
+					<div class="btn px-1">
+    					<a class="btn btn-sm btn-action align-self-end py-2 px-3" href="{{ path('app_support_vehicle_edit', {"id":user.id}) }}">
+      						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    					</a>
+  					</div>
+				</div>
+				</div>
+
+				<table class="table card-text">
+                	<thead>
+                    	<tr>
+                        	<th>Id</th>
+                        	<th>Type</th>
+                        	<th>Marque</th>
+                        	<th>Modèle</th>
+                        	<th>Immatriculation</th>
+                   		</tr>
+               	 	</thead>
+                	<tbody>
+                    	{% for key, vehicle in user.vehicles %}
+                        	<tr>
+                            	<td><c>n°{{ vehicle.id }}</c></td>
+                            	<td><c>{{ vehicle.type|capitalize }}</c></td>
+                            	<td><c>{{ vehicle.brand|capitalize }}</c></td>
+                            	<td><c>{{ vehicle.model|capitalize }}</c></td>
+                            	<td><c>{{ vehicle.numberPlate|upper }}</c></td>
+                        	</tr>
+                    	{% else %}
+                        	<tr>
+                            	<td class="card-body" colspan="6">Aucun véhicule enregistré</td>
+                        	</tr>
+                    	{% endfor %}
+                	</tbody>
+            	</table>
+			</div>

@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des membres du garage{% endblock %}
+
+{% block body %}
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb my-5">
+			<li class="breadcrumb-item">
+				<a href="{{ path("app_support_dashboard_default") }}">Accueil</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Liste des mebres du garages</li>
+		</ol>
+	</nav>
+	<h1>Liste des menbres du garages</h1>
+
+    <div class="text-end mt-3">
+        <a role="button" class="btn btn-danger bolder align-self-end py-2 px-3" href="{{ path("app_support_garage_browse") }}">Retour</a>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Rôle</th>
+                        <th>Email</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for user in garage.users %}
+                        <tr>
+                            <td>n° {{ user.id }}</td>
+                            <td>{{ user.lastname }}</td>
+                            <td>{{ user.firstname }}</td>
+                            <td>{{ user.roles|join() }}</td>
+                            <td>{{ user.email }}</td>
+                            <td class="text-end">
+                                <div class="btn-group px-1">
+                                    <a href="{{ path("app_support_user_read", {"id":user.id}) }}" class="btn btn-sm btn-primary">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                </a>
+                                </div>
+                                <div class="btn-group px-1">
+                                    <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ path("app_support_user_edit", {"id":user.id}) }}">Profil</a>
+                                        {% if user.address is not empty %}
+                                            <a class="dropdown-item" href="{{ path('app_support_address_edit', {"id":user.address.id}) }}">Adresse</a>
+                                        {% endif %}
+                                        <a class="dropdown-item" href="{{ path('app_support_vehicle_edit', {"id":user.id}) }}">Véhicules</a>
+                                        <a class="dropdown-item" href="{{ path('app_support_appointment_edit', {'id': user.id }) }}">Rendez-vous</a>
+                                        <a class="dropdown-item" href="{{ path('app_support_review_edit', {'id': user.id }) }}">Evaluations</a>
+                                    </div>
+                                </div>
+                                <div class="btn-group px-1">
+                                    <form action="{{ path('app_support_user_delete', {'id': user.id}) }}" method="post" onsubmit="return confirm('Voulez-vous vraiment supprimer ce user ?');">
+                                        <button class="btn btn-sm btn-danger" type="submit">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">Aucune ligne trouvée</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des garages{% endblock %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+		<ol class="breadcrumb my-5">
+			<li class="breadcrumb-item">
+				<a class="card-body" href="{{ path("app_support_dashboard_default") }}"><b>Bureau d'accueil</b></a>
+			</li>
+			<li class="breadcrumb-item card-body-active active" aria-current="page">Zone Garages</li>
+		</ol>
+	</nav>
+	<h1 style="margin-top: 3.7rem;" class="title"><b>Liste des garages</b></h1>
+    <div class="text-end">
+        <a role="button" class="btn btn-link align-self-end py-2 px-3" href="{{ path("app_support_garage_add") }}">Ajouter</a>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Siret</th>
+                        <th>Téléphone</th>
+                        <th>Email</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody class="js-listGarages">
+                </tbody>
+
+                <template id="js-templateArrayRow">
+                            <tr>
+                                <td class="js-garageId"></td>
+                                <td class="js-garageName"></td>
+                                <td class="js-garageRegisterNumber"></td>
+                                <td class="js-garagePhone"></td>
+                                <td class="js-garageEmail"></td>
+                                <td class="js-garageButtons">
+                                    <div class="btn-group px-1">
+                                        <a href="" class="btn btn-sm btn-action align-self-end py-2 px-3 js-garageRead">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="btn-group px-1">
+                                        <button type="button" class="btn btn-sm btn-action dropdown-toggle align-self-end py-2 px-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                        <div class="dropdown-menu btn-open-stable">
+                                            <a class="dropdown-item js-garageProfilUpdate btn-open" href="">Profil</a>
+                                            <a class="dropdown-item js-garageScheduleUpdate btn-open" href="">Horaires</a>
+                                            <a class="dropdown-item js-garageMemberUpdate btn-open" href="">Membres</a>
+                                            <a class="dropdown-item js-garageTypeUpdate btn-open" href="">Prestations</a>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group px-1">
+                                        <button class="btn btn-sm btn-delete align-self-end py-2 px-3 js-garageDelete" onsubmit="return confirm('Voulez-vous vraiment supprimer ce garage ?');">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </button>
+                            </tr>
+                    </template>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination" style="display: flex; justify-content: center">
+                    <li class="page-item">
+                        <button class="btn btn-sm btn-action align-self-end py-2 px-3 js-previousPage" style="margin: 0.1rem" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </button>
+                    </li>
+                    <div class="d-flex js-numberPages">
+                    </div>
+                    <template id="js-templateNumberPage">
+                        <li class="page-item"><button class="btn btn-sm btn-action align-self-end py-2 px-3 js-numberPage" style="margin: 0.1rem"></button></li>
+                    </template>
+                    <li class="page-item">
+                        <button class="btn btn-sm btn-action align-self-end py-2 px-3 js-nextPage" style="margin: 0.1rem"aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div id="loading-car">
+        <img src="{{ asset('img/Loading.gif') }}" alt="Chargement en cours..." class="loading">
+    </div>
+{% endblock %}

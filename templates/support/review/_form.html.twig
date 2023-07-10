@@ -1,0 +1,27 @@
+<div class="col-md-6" style="margin: 3.5rem 1rem 5rem 1rem">
+    <div class="mt-5">
+        <h5 class="title"><c>Informations de l'évaluation n°{{ review.id }}</c></h5>
+        <form method="POST">
+            <input type="hidden" name="id" value="{{ review.id }}">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="title" class="form-label">Titre</label>
+                    <input type="text" class="searchbar-input" name="title" placeholder="titre" aria-label="title" value="{{ review is defined ? review.title : '' }}">
+                </div>
+                <div class="col-md-4">
+                    <label for="rating" class="form-label">Note</label>
+                    <input type="number" step="0.5" min="0" max="5" class="searchbar-input" name="rating" placeholder="entre 0 et 5 exemple : 3.5" aria-label="rating" value="{{ review is defined ? review.rating : '' }}">
+                </div>
+                <div class="my-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Commentaire</label>
+                    <textarea class="searchbar-input" name="text" id="exampleFormControlTextarea1" rows="3" placeholder="Texte"></textarea>
+                </div>
+            </div>
+			<div class="col-12">
+			<button type="submit" class="btn btn-link align-self-end py-2 px-3">Sauvegarder</button>
+				<a class="btn btn-link align-self-end py-2 px-3" href="{{ path("app_support_user_browse") }}">Annuler</a>
+			</div>
+            <hr style="color: #E9946B">
+        </form>
+    </div>
+</div>

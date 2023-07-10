@@ -1,0 +1,41 @@
+<div class="card-body">
+	<div style="display: flex; align-items: center; justify-content: space-between">
+  		<h2 class="title"><c>Rendez-vous</c></h2>
+		<div class="btn-group">
+  			<div class="btn px-1">
+    			<a class="btn btn-sm btn-action align-self-end py-2 px-3" href="{# {{ path('app_support_appointment_add', {"id":user.id}) }}#}"> 
+      				<i class="fa fa-plus-square-o" aria-hidden="true"></i>
+    			</a>
+  			</div>
+			<div class="btn px-1">
+    			<a class="btn btn-sm btn-action align-self-end py-2 px-3" href="{{ path('app_support_appointment_edit', {"id":user.id}) }}">
+      				<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    			</a>
+  			</div>
+		</div>
+	</div>
+	<table class="table card-text">
+        <thead>
+            <tr>
+            	<th>Id</th>
+            	<th>Titre</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+            </tr>
+        </thead>
+        <tbody>
+        	{% for key, appointment in user.appointments %}
+            <tr>
+                <td><c>n°{{ appointment.id }}</c></td>
+                <td><c>{{ appointment.title|capitalize }}</c></td>
+                <td><c>{{ appointment.startDate|date() }}</c></td>
+                <td><c>{{ appointment.startDate|date() }}</c></td>
+            </tr>
+        	{% else %}
+            <tr>
+                <td class="card-body" colspan="6">Aucun rendez-vous enregistré</td>
+            </tr>
+        	{% endfor %}
+        </tbody>
+    </table>
+</div>

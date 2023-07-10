@@ -1,0 +1,31 @@
+<div class="col-md-6">
+    <div class="mt-5">
+        <h5 class="title"><c>Informations du rendez-vous n°{{ appointment.id }}</c></h5>
+        <form method="POST">
+            <input type="hidden" name="id" value="{{ appointment.id }}">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="title" class="form-label">Titre</label>
+                    <input type="text" class="searchbar-input" name="title" placeholder="titre" aria-label="title" value="{{ appointment is defined ? appointment.title : '' }}">
+                </div>
+                <div class="my-3">
+                    <label for="details" class="form-label">Détails</label>
+                    <textarea class="searchbar-input" name="details"  rows="3" placeholder="Détails"></textarea>
+                </div>
+                <div class="col-md-4">
+                    <label for="startDate" class="form-label">Date de début</label>
+                    <input type="datetime-local" class="searchbar-input" name="startDate" placeholder="date de début" aria-label="startDate" value="{{ appointment is defined ? appointment.startDate|date('Y-m-d H:i') : '' }}">
+                </div>
+				<div class="col-md-4">
+                    <label for="endDate" class="form-label">Date de fin</label>
+                    <input type="datetime-local" class="searchbar-input" name="endDate" placeholder="date de fin" aria-label="endDate" value="{{ appointment is defined ? appointment.endDate|date('Y-m-d H:i') : '' }}">
+                </div>
+            </div>
+            <div class="col-12">
+				<button type="submit" class="btn btn-link align-self-end py-2 px-3">Sauvegarder</button>
+				<a class="btn btn-link align-self-end py-2 px-3" href="{{ path("app_support_user_browse") }}">Annuler</a>
+			</div>
+            <hr style="color: #E9946B">
+        </form>
+    </div>
+</div>

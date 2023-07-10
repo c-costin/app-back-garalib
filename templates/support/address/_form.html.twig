@@ -1,0 +1,28 @@
+<form action="POST">
+    <div class="mb-3">
+        <label for="number" class="form-label">Numéro</label>
+        <input type="number" class="form-control" id="number" name="number" value="{{ address is defined ? address.number : "" }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="type" class="form-label">Type de voie</label>
+        <input type="text" class="form-control" id="type" name="type" value="{{ address is defined ? address.type : "" }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="address_name" class="form-label">Nom de voie</label>
+        <input type="text" class="form-control" id="address_name" name="address_name" value="{{ address is defined ? address.name : "" }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="postalCode" class="form-label">Code postal</label>
+        <input type="number" class="form-control" id="postalCode" name="postalCode" value="{{ address is defined ? address.postalCode : "" }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="town" class="form-label">Ville</label>
+        <input type="text" class="form-control" id="town" name="town" value="{{ address is defined ? address.town : "" }}" required>
+    </div>
+    <input type="hidden" name="_routeName" value="user">
+    <div class="col d-flex justify-content-end gap-2 mt-5">
+		<button type="submit" class="btn btn-success">Sauvegarder</button>
+        <a class="btn btn-warning" href="{{ path("app_support_user_browse") }}">Annuler</a>
+        </form>
+	</div>
+</form>

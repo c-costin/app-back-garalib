@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage n°{{garage.id}}
+{% endblock %}
+
+{% block body %}
+    <nav aria-label="breadcrumb">
+		<ol class="breadcrumb my-5">
+			<li class="breadcrumb-item">
+				<a class="card-body" href="{{ path("app_support_dashboard_default") }}"><b>Bureau d'accueil</b></a>
+			</li>
+			<li class="breadcrumb-item">
+				<a class="card-body" href="{{ path("app_support_garage_browse") }}"><b>Zone Garages</b></a>
+			</li>
+			<li class="breadcrumb-item card-body-active active" aria-current="page">{{ garage.name|capitalize }}</li>
+		</ol>
+	</nav>
+
+	<h1 class="title"><b>{{ garage.name|capitalize }}</b></h1>
+
+ 	
+		<div class="card col-5" style="margin: 3rem 1rem">
+			<div class="card-body">
+				<div style="display: flex; align-items: center; justify-content: space-between">
+					<h2 class="title"><c>Informations du garage n°{{ garage.id }}</c></h2>
+					<div class="btn-group" style="display: flex">
+						<div class="btn px-1">
+    						<a class="btn btn-sm btn-action align-self-end py-2 px-3" href="{{ path('app_support_garage_edit', {"id":garage.id}) }}">
+      							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    						</a>
+  						</div>
+					</div>
+				</div>
+					<div class="row mt-2 card-text">
+						<div class="col-lg-3 col-md-4 label">Nom</div>
+						<div class="col-lg-9 col-md-8"><c>{{ garage.name|capitalize }}</c></div>
+					</div>
+				<div class="row mt-2 card-text">
+					<div class="col-lg-3 col-md-4 label">Siret</div>
+					<div class="col-lg-9 col-md-8"><c>{{ garage.registerNumber }}</c></div>
+				</div>
+				<div class="row mt-2 card-text">
+					<div class="col-lg-3 col-md-4 label">Téléphone</div>
+					<div class="col-lg-9 col-md-8"><c>{{ garage.phone }}</c></div>
+					</div>
+				<div class="row mt-2 card-text">
+					<div class="col-lg-3 col-md-4 label">Email</div>
+					<div class="col-lg-9 col-md-8"><c>{{ garage.email }}</c></div>
+				</div>
+					{% if garage.address is not empty %}
+						<div class="row mt-2 card-text">
+							<div class="col-lg-3 col-md-4 label">Adresse</div>
+							<div class="col-lg-9 col-md-8"><c>{{garage.address.number}}
+								{{garage.address.type}}
+								{{garage.address.name|capitalize}},
+								{{garage.address.postalCode}},
+								{{garage.address.town|capitalize}}</c></div>
+						</div>
+					{% endif %}
+				</div>
+		</div>
+
+		<div class="card col-5" style="margin: 3.5rem 1rem">
+			{% include "support/type/_card.html.twig" %}
+		</div>
+
+		<div class="card col-5" style="margin: 3.5rem 1rem">
+			{% include "support/schedule/_card.html.twig" %}
+		</div>
+		<img src="{{ asset('img/Pro.svg') }}" class="card-img-top" alt="Pro Image" style="width: 30%; height: auto; position: fixed; top: 50%; right: 10rem; transform: translateY(-50%);">
+{% endblock %}

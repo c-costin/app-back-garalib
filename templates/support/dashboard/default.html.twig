@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<div class="row mt-5">
+  <div class="col-12 text-center">
+    <h1 class="title">Bienvenue à l'atelier <c>Gara</c><b>Lib</b>-<c>Support</c></h1>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="card">
+        <p class="card-text text-center">Gérez les <b>utilisateurs</b>{#  <br>profil, adresse, véhicules, rendez-vous, évaluations #}</p> 
+      <img src="{{ asset('img/UserLogin.svg') }}" class="card-img-top" alt="image meet the team de iconscout.com" style="height: 20rem";>
+      <div class="card-body text-center">
+        <a href="{{ path("app_support_user_browse") }}" class="btn btn-link align-self-end py-2 px-3">Entrez dans la Zone Utilisateurs</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+        <p class="card-text text-center">Gérez les <b>garages</b>{# <br>profil, horaires, membres, prestations #}</p>
+      <img src="{{ asset('img/UserRegistration.svg') }}" class="card-img-top" alt="image automobile repair de iconscout.com" style="height: 20rem";>
+      <div class="card-body text-center">
+        <a href="{{ path("app_support_garage_browse") }}" class="btn btn-link align-self-end py-2 px-3">Entrez dans la Zone Garages</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

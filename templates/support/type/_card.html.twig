@@ -1,0 +1,40 @@
+			<div class="card-body">
+				<div style="display: flex; align-items: center; justify-content: space-between">
+  					<h2 class="title"><c>Prestations</c></h2>
+					<div class="btn-group" style="display: flex">
+  						<div class="btn px-1">
+    						<a class="btn btn-sm btn-action align-self-end py-2 px-3" href="{# {{ path('app_support_type_add', {"id":garage.id}) }} #}">
+      							<i class="fa fa-plus-square-o" aria-hidden="true"></i>
+    						</a>
+  						</div>
+						<div class="btn px-1">
+    						<a class="btn btn-sm btn-action align-self-end py-2 px-3" href="{{ path('app_support_type_edit', {"id":garage.id}) }}">
+      							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    						</a>
+  						</div>
+					</div>
+				</div>
+				<hr>
+				<table class="table card-text">
+                	<thead>
+                    	<tr>
+                        	<th>Id</th>
+                        	<th>Nom</th>
+                        	<th>Durée</th>
+                   		</tr>
+               	 	</thead>
+                	<tbody>
+                    	{% for key, type in garage.types %}
+                        	<tr>
+                            	<td><c>n°{{ type.id }}</c></td>
+                            	<td><c>{{ type.name }}</c></td>
+                            	<td><c>{{ type.duration }}</c></td>
+                        	</tr>
+                    	{% else %}
+                        	<tr>
+                            	<td class="card-body" colspan="6">Aucune prestation enregistrée</td>
+                        	</tr>
+                    	{% endfor %}
+                	</tbody>
+            	</table>
+			</div>

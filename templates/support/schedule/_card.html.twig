@@ -1,0 +1,42 @@
+			<div class="card-body">
+				<div style="display: flex; align-items: center; justify-content: space-between">
+  					<h2 class="title"><c>Horaires</c></h2>
+					<div class="btn-group" style="display: flex">
+  						<div class="btn px-1">
+    						<a class="btn btn-sm btn-action align-self-end py-2 px-3" href="{# {{ path('app_support_schedule_add', {"id":garage.id}) }} #}">
+      							<i class="fa fa-plus-square-o" aria-hidden="true"></i>
+    						</a>
+  						</div>
+						<div class="btn px-1">
+    						<a class="btn btn-sm btn-action align-self-end py-2 px-3" href="{{ path('app_support_schedule_edit', {"id":garage.id}) }}">
+      							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    						</a>
+  						</div>
+					</div>
+				</div>
+				<hr>
+				<table class="table card-text">
+                	<thead>
+                    	<tr>
+                        	<th>Id</th>
+                        	<th>Jour</th>
+                        	<th>Ouverture</th>
+							<th>Fermeture</th>
+                   		</tr>
+               	 	</thead>
+                	<tbody>
+                    	{% for key, schedule in garage.schedules %}
+                        	<tr>
+                            	<td><c>n°{{ schedule.id }}</c></td>
+                            	<td><c>{{ schedule.day }}</c></td>
+                            	<td><c>{{ schedule.startTime }}</c></td>
+								<td><c>{{ schedule.endTime }}</c></td>
+                        	</tr>
+                    	{% else %}
+                        	<tr>
+                            	<td class="card-body" colspan="6">Aucun horaire enregistré</td>
+                        	</tr>
+                    	{% endfor %}
+                	</tbody>
+            	</table>
+			</div>
