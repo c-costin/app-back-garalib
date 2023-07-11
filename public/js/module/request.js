@@ -4,7 +4,7 @@ export const request = {
         // endpoint: "https://c-costin-server.eddi.cloud/api/",
 
         // Connect with Charlotte server
-        endpoint: "https://charlotte-carpentier-server.eddi.cloud/api/",
+        endpoint: "https://dwwm.back.costincadeau.fr/api/",
         token: "",
 
         getTokenApi: async function ()
